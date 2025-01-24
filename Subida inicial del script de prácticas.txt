@@ -1,0 +1,34 @@
+Comandos usados en la práctica 2: Configuración de parámetros de red
+===================================================================
+# Configuración de red con DHCP
+nmcli device show                # Ver dispositivos de red
+nmcli connection show            # Ver conexiones activas
+nmcli connection modify "conexión" ipv4.method auto   # Activar DHCP
+nmcli connection up "conexión"   # Reiniciar conexión para aplicar cambios
+
+# Configuración de red con IP estática
+nmcli connection modify "conexión" ipv4.method manual ipv4.addresses "192.168.1.100/24" ipv4.gateway "192.168.1.1"
+nmcli connection up "conexión"
+
+# Configuración de DNS
+nmcli connection modify "conexión" ipv4.dns "8.8.8.8,8.8.4.4"
+
+Comandos usados en la práctica 3: Gestión de usuarios y grupos
+===================================================================
+adduser tu_nombre_usuario           # Crear un nuevo usuario
+usermod -aG sudo tu_nombre_usuario  # Agregar al grupo sudoers
+groupadd guest                      # Crear un grupo
+useradd -G guest nuevo_usuario      # Crear usuario y asignar al grupo
+deluser nuevo_usuario               # Eliminar usuario
+groupdel guest                      # Eliminar grupo
+
+Comandos usados en la práctica 4: Gestión de permisos de archivos
+===================================================================
+mkdir materia                        # Crear carpeta
+touch materia/estudiante.txt         # Crear archivo
+echo "Tu nombre y matrícula" > materia/estudiante.txt  # Editar archivo
+chmod 700 materia/estudiante.txt     # Cambiar permisos a control total para propietario
+chgrp grupo materia/estudiante.txt   # Cambiar grupo propietario
+chmod 770 materia/estudiante.txt     # Control total para grupo propietario
+cp materia/estudiante.txt materia2/  # Copiar archivo a otra carpeta
+rm -r materia                        # Eliminar carpeta y archivo contenido
